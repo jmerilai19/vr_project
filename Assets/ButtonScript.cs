@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonScript : MonoBehaviour
 {
+	public int myMode = 1;
 	public bool on = false;
 	public Material materialOn;
     public Material materialDefault;
@@ -24,14 +25,16 @@ public class ButtonScript : MonoBehaviour
 	public void toggleOn() {
 		on = !on;
 		if (on) {
+			print("on");
 			gameObject.GetComponent<MeshRenderer> ().material = materialOn;
 			transform.Translate(Vector3.down * 0.04f);
-			manager.gameObject.GetComponent<ManagerScript> ().mode = 1;
+			manager.gameObject.GetComponent<ManagerScript> ().mode = myMode;
 			manager.gameObject.GetComponent<ManagerScript> ().updateMode();
 		} else {
+			print("off");
 			gameObject.GetComponent<MeshRenderer> ().material = materialDefault;
 			transform.Translate(Vector3.up * 0.04f);
-			manager.gameObject.GetComponent<ManagerScript> ().mode = 0;
+			manager.gameObject.GetComponent<ManagerScript> ().mode = -myMode;
 			manager.gameObject.GetComponent<ManagerScript> ().updateMode();
 		}
 	}

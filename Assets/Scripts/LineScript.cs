@@ -21,10 +21,14 @@ public class LineScript : MonoBehaviour
 		Physics.Raycast(transform.parent.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, 50f);
         line.SetPosition(0, transform.parent.position);
 		line.SetPosition(1, hitInfo.point);
-		if (hitInfo.transform.gameObject.name == "button0") {
+		if (hitInfo.transform.gameObject.tag == "RedButton") {
 			if (OVRInput.GetDown(OVRInput.Button.One)) {
 				hitInfo.transform.gameObject.GetComponent<ButtonScript>().toggleOn();
 			}
+		}
+		
+		if (OVRInput.GetDown(OVRInput.Button.Two)) {
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 }
