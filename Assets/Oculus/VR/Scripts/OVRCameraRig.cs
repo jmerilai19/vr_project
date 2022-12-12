@@ -106,6 +106,8 @@ public class OVRCameraRig : MonoBehaviour
     /// \note: The main camera of the game will be used to provide VR rendering. And the tracking space anchors will still be updated to provide reference poses.
     /// </summary>
     public bool disableEyeAnchorCameras = false;
+	
+	public bool tiltEnabled = false;
 
 
     protected bool _skipUpdate = false;
@@ -227,8 +229,12 @@ public class OVRCameraRig : MonoBehaviour
                     rightEyeAnchor.localPosition = rightEyePosition;
                 if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.LeftEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeLeft, OVRPlugin.Step.Render, out leftEyeRotation))
                     leftEyeAnchor.localRotation = leftEyeRotation;
-                if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.RightEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeRight, OVRPlugin.Step.Render, out rightEyeRotation))
-                    rightEyeAnchor.localRotation = rightEyeRotation;
+                if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.RightEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeRight, OVRPlugin.Step.Render, out rightEyeRotation)) {
+                    if (tiltEnabled) {
+						rightEyeRotation *= Quaternion.Euler(0, 0, 6);
+					}
+					rightEyeAnchor.localRotation = rightEyeRotation;
+				}
             }
         }
 
