@@ -23,6 +23,11 @@ public class ManagerScript : MonoBehaviour
 	
 	public GameObject stuff;
 	
+	public GameObject paintingL;
+	public GameObject paintingR;
+	public GameObject paintingLinv;
+	public GameObject paintingRinv;
+	
     void Start()
     {
         vaseLayer0 = LayerMask.NameToLayer("Left");
@@ -40,6 +45,11 @@ public class ManagerScript : MonoBehaviour
 			}
 			vase_red.gameObject.SetActive(true);
 			vase.gameObject.layer = vaseLayer0;
+			
+			paintingLinv.gameObject.SetActive(true);
+			paintingRinv.gameObject.SetActive(true);
+			paintingL.gameObject.layer = vaseLayer0;
+			paintingR.gameObject.layer = vaseLayer0;
 		} else if (mode == 2) {
 			cameraLeft.GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Right;
 			cameraRight.GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Left;
@@ -48,6 +58,9 @@ public class ManagerScript : MonoBehaviour
 				buttonBlue.gameObject.GetComponent<ButtonScript>().toggleOn();
 			}
 			vase.gameObject.layer = vaseLayer0;
+			
+			paintingL.gameObject.layer = vaseLayer0;
+			paintingR.gameObject.layer = vaseLayer0;
 		} else if (mode == 4) {
 			cameraLeft.gameObject.GetComponent<Blur> ().enabled = true;
 		} else if (mode == 5) {
@@ -55,25 +68,40 @@ public class ManagerScript : MonoBehaviour
 				buttonBlue.gameObject.GetComponent<ButtonScript>().toggleOn();
 			}
 			OVRRig.gameObject.GetComponent<OVRCameraRig>().tiltEnabled = true;
-		/////////////////////////
-		} else if (mode == -1) {
+		
+		} else if (mode == 6) {
+			OVRRig.gameObject.transform.localScale = new Vector3(1, 1, 1);
+		} 
+		//////////////////////////////////////////////////
+		else if (mode == -1) {
 			vase_red.gameObject.SetActive(false);
 			vase.gameObject.layer = vaseLayer1;
+			
+			paintingLinv.gameObject.SetActive(false);
+			paintingRinv.gameObject.SetActive(false);
+			paintingL.gameObject.layer = vaseLayer1;
+			paintingR.gameObject.layer = vaseLayer1;
 		} else if (mode == -2) {
 			cameraLeft.GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Left;
 			cameraRight.GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Right;
 		} else if (mode == -3) {
-			//cameraLeft.transform.localScale = new Vector3(1, 1, 1);
-			//cameraRight.transform.localScale = new Vector3(1, 1, 1);
 			vase_red.gameObject.SetActive(false);
 			vase.gameObject.layer = vaseLayer1;
+			
+			paintingL.gameObject.layer = vaseLayer1;
+			paintingR.gameObject.layer = vaseLayer1;
 		} else if (mode == -4){
 			cameraLeft.gameObject.GetComponent<Blur> ().enabled = false;
 		} else if (mode == -5){
 			OVRRig.gameObject.GetComponent<OVRCameraRig>().tiltEnabled = false;
+		} else if (mode == -6) {
+			OVRRig.gameObject.transform.localScale = new Vector3(2, 2, 2);
 		} else {
 			vase_red.gameObject.SetActive(false);
 			vase.gameObject.layer = vaseLayer1;
+			
+			paintingL.gameObject.layer = vaseLayer1;
+			paintingR.gameObject.layer = vaseLayer1;
 			
 			cameraLeft.GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Left;
 			cameraRight.GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Right;
@@ -83,6 +111,11 @@ public class ManagerScript : MonoBehaviour
 			OVRRig.gameObject.GetComponent<OVRCameraRig>().tiltEnabled = false;
 			
 			cameraLeft.gameObject.GetComponent<Blur> ().enabled = false;
+			
+			paintingLinv.gameObject.SetActive(false);
+			paintingRinv.gameObject.SetActive(false);
+			
+			OVRRig.gameObject.transform.localScale = new Vector3(2, 2, 2);
 		}
 	}
 }

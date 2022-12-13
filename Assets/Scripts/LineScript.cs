@@ -26,7 +26,7 @@ public class LineScript : MonoBehaviour
         line.SetPosition(0, transform.parent.position);
 		line.SetPosition(1, hitInfo.point);
 		
-		if (hitInfo.transform.gameObject.name == "button0") {
+		if (hitInfo.transform.gameObject.tag == "RedButton") {
 			if (OVRInput.GetDown(OVRInput.Button.One)) {
 				hitInfo.transform.gameObject.GetComponent<ButtonScript>().toggleOn();
 			}

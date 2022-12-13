@@ -231,7 +231,7 @@ public class OVRCameraRig : MonoBehaviour
                     leftEyeAnchor.localRotation = leftEyeRotation;
                 if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.RightEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeRight, OVRPlugin.Step.Render, out rightEyeRotation)) {
                     if (tiltEnabled) {
-						rightEyeRotation *= Quaternion.Euler(0, 0, 6);
+						rightEyeRotation *= Quaternion.Euler(0, 0, 4);
 					}
 					rightEyeAnchor.localRotation = rightEyeRotation;
 				}
